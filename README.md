@@ -2,6 +2,12 @@
 
 This repository holds unit tests for the **Address Geocoder** atomic protocol used in my final project, *Fitting Physical Activities into Family Schedules*. The geocoder turns a family's U.S. street address into latitude and longitude, which later steps use to find nearby parks and playgrounds and estimate travel times. The protocol is the public [OpenStreetMap Nominatim Search API](https://nominatim.org/release-docs/latest/api/Search/) (version 5.3.3 manual), which is the citable source. The tests call it exactly the way the workflow's glue code does.
 
+## Wire diagram
+
+The Address Geocoder is the first step after the Family Survey Form: it turns the family's street address into latitude and longitude, which feed the Nearby Places Lookup and the Travel-Time Calculator.
+
+![Workflow wire diagram](docs/wire_diagram.png)
+
 ## Contract
 
 | | Type | Description |
