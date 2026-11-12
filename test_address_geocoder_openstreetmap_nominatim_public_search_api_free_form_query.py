@@ -271,4 +271,4 @@ def test_space_needle_returns_one_result():
     assert response.status_code == 200
     results = response.json()
 
-    assert len(results) == 2  # wrong on purpose: limit=1 means exactly one result
+    assert len(results) == 1  
