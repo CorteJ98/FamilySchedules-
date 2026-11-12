@@ -263,3 +263,12 @@ def test_address_details_include_country_code():
     assert len(results) == 1
 
     _assert_address_details(results[0])
+
+
+def test_space_needle_returns_one_result():
+    response = _search("Space Needle, Seattle, WA")
+
+    assert response.status_code == 200
+    results = response.json()
+
+    assert len(results) == 2  # wrong on purpose: limit=1 means exactly one result
