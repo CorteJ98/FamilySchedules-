@@ -50,3 +50,55 @@ Expected result: **14 passed**. The tests wait 15 seconds between requests, so t
 
 - The tests call the live public Nominatim server, which is shared by many users. They can fail from rate limiting or temporary outages, not just from real bugs.
 - Reference coordinates are approximate.
+
+  ## Running the Full Family Schedules Workflow
+
+The full workflow can be run with one command from the repository's main directory:
+
+```bash
+python main.py
+```
+
+The workflow uses the synthetic family information stored in `family_survey.json`. It follows the nine components shown in the wire diagram:
+
+1. **Family Survey Form:** Reads the family's schedule, address, child's age, and transportation preferences.
+2. **Address Geocoder:** Uses OpenStreetMap Nominatim to convert the street address into latitude and longitude.
+3. **Nearby Places Lookup:** Searches OpenStreetMap for nearby parks and playgrounds. If the search is unavailable or returns no usable places, backup sample locations are used.
+4. **Free-Time Finder:** Identifies available time by subtracting busy blocks from the family's schedule.
+5. **Travel-Time Calculator:** Estimates travel times using the family's transportation preferences.
+6. **Option Ranker:** Ranks activity options based on available time and travel time.
+7. **Plan Writer:** Creates a weekly activity plan.
+8. **Human Review:** Displays the proposed plan and asks the user to approve or reject it.
+9. **Final Output:** Saves the approved plan to `output/approved_plan.txt`.
+
+An internet connection is required for address geocoding and nearby-place searches.
+
+### Approving the Plan
+
+After the proposed plan is displayed, the user can type `y` to approve it or `n` to reject it. Only approved plans are saved.
+
+For testing purposes, the workflow can also be run without the interactive approval question:
+
+```bash
+python main.py --auto-approve
+```
+
+This option automatically approves the plan and is intended for testing and demonstration.
+
+### Running with a Different Input or Output File
+
+The workflow also supports custom survey and output file paths:
+
+```bash
+python main.py --survey path/to/survey.json --out path/to/plan.txt
+```
+
+### Running Unit Tests
+
+The automated unit tests can be run locally using:
+
+```bash
+python -m pytest -v
+```
+
+The GitHub Actions workflow also runs tests automatically when changes are pushed to the repository or a pull request is opened.
