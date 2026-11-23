@@ -23,3 +23,11 @@
              pip install -r requirements.txt
          - name: Run unit tests
            run: pytest -v
+         - name: Run the workflow end to end
+           run: python main.py --auto-approve
+
+   git status
+   git add main.py family_survey.json .gitignore .github/workflows/tests.yml
+   git commit -m "Add rough draft workflow and run it in GitHub Actions"
+   git push 
+   

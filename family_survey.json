@@ -1,0 +1,16 @@
+{
+  "family_name": "Sample Family (synthetic, not a real family)",
+  "address": "350 5th Avenue, New York, NY 10118",
+  "child_age": 8,
+  "travel_modes": ["walk", "bike"],
+  "latest_home_time": "19:00",
+  "busy_blocks": {
+    "Mon": [["07:30", "15:30"]],
+    "Tue": [["07:30", "15:30"], ["16:00", "17:00"]],
+    "Wed": [["07:30", "15:30"]],
+    "Thu": [["07:30", "15:30"], ["16:00", "17:00"]],
+    "Fri": [["07:30", "15:30"]],
+    "Sat": [["12:00", "13:00"]],
+    "Sun": [["12:00", "13:00"]]
+  }
+}
